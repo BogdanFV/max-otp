@@ -1,25 +1,41 @@
 /**
  * Phone input initialization with intl-tel-input library.
- * Provides country flag selection and phone validation.
- * Uses hiddenInput so the full international number is reliably submitted
- * (with separateDialCode the visible input holds only national part).
+ * - Finds visible 'phone-visible' field for user input with country selector
+ * - Stores phone number in hidden 'Phone' field as integer (e.g., 79154377861)
+ * - Uses capture phase to ensure value is set before form submit
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // Find phone input field - try different possible names
-    var phoneInput = document.getElementById('phoneNumber') ||
-                     document.getElementById('phone') ||
-                     document.querySelector('input[name="phoneNumber"]') ||
-                     document.querySelector('input[name="phone"]');
+    // Find visible phone field (user input) - can be 'phone-visible' or 'phone'
+    var visibleInput = document.getElementById('phone-visible') ||
+                       document.getElementById('phone') ||
+                       document.getElementById('phoneNumber');
 
-    if (!phoneInput || typeof intlTelInput === 'undefined') {
+    if (!visibleInput || typeof intlTelInput === 'undefined') {
         return;
     }
 
-    var fieldName = phoneInput.getAttribute('name') || phoneInput.id || 'phoneNumber';
+    // Find hidden Phone field (where we store the integer value)
+    var hiddenPhone = document.getElementById('Phone');
 
-    // Initialize intl-tel-input with hiddenInput: full number is submitted via
-    // a hidden field. The visible input holds only national part with separateDialCode.
-    var iti = intlTelInput(phoneInput, {
+    if (!hiddenPhone) {
+        console.warn('Hidden Phone field not found');
+        return;
+    }
+
+    var form = visibleInput.closest('form');
+    if (!form) {
+        return;
+    }
+
+    console.log('Phone input initialized:', {
+        visibleId: visibleInput.id,
+        hiddenId: hiddenPhone.id,
+        hiddenName: hiddenPhone.name,
+        formId: form.id
+    });
+
+    // Initialize intl-tel-input on visible field
+    var iti = intlTelInput(visibleInput, {
         initialCountry: 'ru',
         preferredCountries: ['ru', 'by', 'kz', 'uz', 'ua'],
         separateDialCode: true,
@@ -29,46 +45,94 @@ document.addEventListener('DOMContentLoaded', function() {
         customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
             return selectedCountryPlaceholder;
         },
-        utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js',
-        hiddenInput: function() {
-            return { phone: fieldName };
+        utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js'
+    });
+
+    visibleInput.itiInstance = iti;
+
+    // Convert international number to integer format (remove + and spaces)
+    function toIntegerFormat(number) {
+        if (!number) return '';
+        // Remove +, spaces, dashes, parentheses
+        return number.replace(/[\s\+\-\(\)]/g, '');
+    }
+
+    // Function to update hidden Phone field
+    function updateHiddenPhone() {
+        try {
+            var fullNumber = '';
+            
+            // Try to get full number using getNumber()
+            try {
+                fullNumber = iti.getNumber() || '';
+            } catch (e) {
+                console.warn('getNumber() failed, trying alternative method:', e);
+            }
+            
+            // If getNumber() returns empty, construct from visible input and country code
+            if (!fullNumber && visibleInput.value) {
+                var countryData = iti.getSelectedCountryData();
+                if (countryData && countryData.dialCode) {
+                    // Get only digits from visible input
+                    var nationalNumber = visibleInput.value.replace(/\D/g, '');
+                    if (nationalNumber) {
+                        fullNumber = '+' + countryData.dialCode + nationalNumber;
+                    }
+                }
+            }
+            
+            var integerNumber = toIntegerFormat(fullNumber);
+            hiddenPhone.value = integerNumber;
+            
+            console.log('Updating Phone field:', {
+                visibleValue: visibleInput.value,
+                fullNumber: fullNumber,
+                integerNumber: integerNumber,
+                hiddenValue: hiddenPhone.value,
+                hiddenElement: hiddenPhone
+            });
+        } catch (e) {
+            console.error('Error updating Phone field:', e);
         }
+    }
+
+    // Update hidden Phone field with integer format before form submit
+    form.addEventListener('submit', function(e) {
+        updateHiddenPhone();
+        console.log('Form submit: Final Phone value:', {
+            hiddenName: hiddenPhone.name,
+            hiddenValue: hiddenPhone.value
+        });
+    }, true);
+
+    visibleInput.addEventListener('blur', function() {
+        updateHiddenPhone();
+        validatePhone(iti, visibleInput);
     });
 
-    // Store iti instance for later access
-    phoneInput.itiInstance = iti;
-
-    // Remove name from visible input so only the hidden field (full number) is submitted.
-    // Otherwise we'd submit both; visible input has national-only with separateDialCode.
-    phoneInput.removeAttribute('name');
-
-    // Real-time validation feedback
-    phoneInput.addEventListener('blur', function() {
-        validatePhone(iti, phoneInput);
-    });
-
-    phoneInput.addEventListener('input', function() {
-        // Remove error state while typing
-        var wrapper = phoneInput.closest('.pf-v5-c-form-control');
+    visibleInput.addEventListener('input', function() {
+        // Update hidden Phone field dynamically as user types
+        updateHiddenPhone();
+        
+        var wrapper = visibleInput.closest('.pf-v5-c-form-control');
         if (wrapper) {
             wrapper.classList.remove('pf-m-error');
         }
-        var errorMsg = phoneInput.parentElement.querySelector('.phone-error-message');
+        var errorMsg = visibleInput.parentElement.querySelector('.phone-error-message');
         if (errorMsg) {
             errorMsg.style.display = 'none';
         }
     });
 
-    // Listen for country change
-    phoneInput.addEventListener('countrychange', function() {
-        validatePhone(iti, phoneInput);
+    visibleInput.addEventListener('countrychange', function() {
+        updateHiddenPhone();
+        validatePhone(iti, visibleInput);
     });
 
     function validatePhone(iti, input) {
         var wrapper = input.closest('.pf-v5-c-form-control');
         var errorMsg = input.parentElement.querySelector('.phone-error-message');
 
-        // Skip validation if empty (let required validation handle it)
         if (!input.value.trim()) {
             if (wrapper) wrapper.classList.remove('pf-m-error');
             if (errorMsg) errorMsg.style.display = 'none';
@@ -80,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (errorMsg) errorMsg.style.display = 'none';
         } else {
             if (wrapper) wrapper.classList.add('pf-m-error');
-            // Error messages handled by Keycloak validation
         }
     }
 });

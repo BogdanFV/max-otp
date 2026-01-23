@@ -151,12 +151,35 @@
 			<#assign placeholderText="Отчество">
 		<#elseif attribute.name == "secondName" || attribute.name == "second_name">
 			<#assign placeholderText="Второе имя">
-		<#elseif attribute.name == "phoneNumber">
+		<#elseif attribute.name == "phoneNumber" || attribute.name == "phone" || attribute.name == "Phone">
 			<#assign placeholderText="Телефон">
 		<#elseif attribute.name == "birthDate">
 			<#assign placeholderText="Дата рождения">
 		</#if>
 	</#if>
+	<#if attribute.name == "Phone">
+		<#-- Hidden field for Phone (stores integer format: 79154377861) -->
+		<input type="hidden" id="${attribute.name}" name="${attribute.name}" value="${(value!'')}" />
+		<#-- Visible field for user input with country selector (no name, so it doesn't submit) -->
+		<span class="${properties.kcInputClass} <#if error?has_content>${properties.kcError}</#if>">
+			<input type="tel" id="phone-visible" class="${properties.kcInputClass!}" 
+				aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
+				<#if attribute.readOnly>disabled</#if>
+				<#if placeholderText?has_content>placeholder="${placeholderText}"</#if>
+				data-phone-visible="1"
+			/>
+		</span>
+	<#elseif attribute.name == "phoneNumber" || attribute.name == "phone">
+		<#-- Visible field for user input with country selector -->
+		<span class="${properties.kcInputClass} <#if error?has_content>${properties.kcError}</#if>">
+			<input type="tel" id="${attribute.name}" class="${properties.kcInputClass!}" 
+				aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
+				<#if attribute.readOnly>disabled</#if>
+				<#if placeholderText?has_content>placeholder="${placeholderText}"</#if>
+				data-phone-visible="1"
+			/>
+		</span>
+	<#else>
 	<span class="${properties.kcInputClass} <#if error?has_content>${properties.kcError}</#if>">
 		<input type="<@inputTagType attribute=attribute/>" id="${attribute.name}" name="${attribute.name}" value="${(value!'')}" class="${properties.kcInputClass!}"
 			aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
@@ -175,11 +198,12 @@
 			</#list>
 		/>
 	</span>
+	</#if>
 </#macro>
 
 <#macro inputTagType attribute>
 	<#compress>
-	<#if attribute.name == "phoneNumber" || attribute.name == "phone">
+	<#if attribute.name == "phoneNumber" || attribute.name == "phone" || attribute.name == "Phone">
 		tel
 	<#elseif attribute.annotations.inputType??>
 		<#if attribute.annotations.inputType?starts_with("html5-")>

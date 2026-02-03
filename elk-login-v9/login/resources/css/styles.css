@@ -1,0 +1,1034 @@
+html,
+body,
+body *,
+.pf-v5-c-login__main,
+.pf-v5-c-login__main *,
+.pf-v5-c-form-control,
+.pf-v5-c-form-control *,
+input,
+button,
+a,
+span,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Lato, sans-serif !important;
+}
+
+:root {
+    --keycloak-logo-url: url('../img/keycloak-logo-text.svg');
+    --keycloak-bg-logo-url: url("../img/keycloak-bg.png");
+    --login-background-url: url('../img/login-background.png');
+    --login-background-logo-url: url('../img/login-background-logo.png');
+    --keycloak-logo-height: 72px;
+    --keycloak-logo-width: 231px;
+    --blue-color: #093B80;
+    --pf-v5-global--link--Color: #093B80;
+    --pf-v5-c-helper-text__item-text--Color: #A30000;
+}
+
+.pf-v5-c-login__container {
+    grid-template-columns: 384px;
+    grid-template-areas: "main";
+}
+
+.pf-v5-c-login__main {
+    border-radius: 4px;
+    box-shadow: 0 48px 24px 0 #E6EBF566;
+    padding-block-start: 0;
+}
+
+.pf-v5-c-login__main > :first-child:not(.pf-v5-c-login__main-header) {
+    padding-block-start: 0 !important;
+}
+
+.pf-v5-c-login__header {
+    margin-block-start: 0;
+}
+
+.pf-v5-c-login__header .pf-v5-c-brand {
+    margin-block-end: 0;
+}
+
+.pf-v5-c-login__main-header {
+    padding-block-start: 51px;
+    padding-block-end: 12px;
+    padding-inline-start: 34px;
+    padding-inline-end: 32px;
+    height: auto;
+    min-height: auto;
+}
+
+.pf-v5-c-login__main-body {
+    padding-inline-start: 34px;
+    padding-inline-end: 32px;
+}
+
+#kc-page-title {
+    font-family: Arial;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    vertical-align: middle;
+}
+
+/* Скрываем лейблы только для полей логина и пароля в форме входа */
+#kc-form-login .pf-v5-c-form__label {
+    display: none;
+}
+
+/* Показываем лейблы для обязательных полей в других формах */
+.pf-v5-c-form__label {
+    display: block;
+    font-size: 16px;
+}
+
+/* Скрываем поле secondName (второе имя) */
+input[name="secondName"],
+input[name="second_name"],
+textarea[name="secondName"],
+textarea[name="second_name"],
+select[name="secondName"],
+select[name="second_name"],
+#secondName,
+#second_name,
+.pf-v5-c-form__group:has(input[name="secondName"]),
+.pf-v5-c-form__group:has(input[name="second_name"]),
+.pf-v5-c-form__group:has(textarea[name="secondName"]),
+.pf-v5-c-form__group:has(textarea[name="second_name"]),
+.pf-v5-c-form__group:has(#secondName),
+.pf-v5-c-form__group:has(#second_name) {
+    display: none !important;
+}
+
+/* Центрируем инпуты в поле даты рождения */
+#birthday,
+input[name="birthday"],
+input[type="date"][name="birthday"],
+.pf-v5-c-form__group:has(#birthday) .pf-v5-c-form-control,
+.pf-v5-c-form__group:has(input[name="birthday"]) .pf-v5-c-form-control,
+.pf-v5-c-form__group:has(#birthday) input,
+.pf-v5-c-form__group:has(input[name="birthday"]) input {
+    text-align: center !important;
+}
+
+.pf-v5-c-form__group:has(#birthday) .pf-v5-c-input-wrapper,
+.pf-v5-c-form__group:has(input[name="birthday"]) .pf-v5-c-input-wrapper,
+.pf-v5-c-form__group:has(#birthday) .pf-v5-c-form-control,
+.pf-v5-c-form__group:has(input[name="birthday"]) .pf-v5-c-form-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Центрируем контейнер с инпутами даты рождения */
+.pf-v5-c-form__group:has(#birthday),
+.pf-v5-c-form__group:has(input[name="birthday"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pf-v5-c-form__group:has(#birthday) .pf-v5-c-form__label,
+.pf-v5-c-form__group:has(input[name="birthday"]) .pf-v5-c-form__label {
+    width: 100%;
+}
+
+div:has(input[name="birthday"]) {
+    width: 100%;
+}
+
+.pf-v5-c-form__label-required {
+    color: var(--pf-v5-c-helper-text__item-text--Color);
+}
+
+.pf-v5-c-form-control {
+    background-color: #F5F7FA;
+    border: none !important;
+    border-radius: 8px;
+}
+
+.pf-v5-c-form-control:before,
+.pf-v5-c-form-control:after {
+    border: none !important;
+    border-block-end: none !important;
+    border-block-start: none !important;
+    border-inline-start: none !important;
+    border-inline-end: none !important;
+}
+
+.pf-v5-c-form-control input {
+    height: 56px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: none !important;
+    background-color: #F5F7FA;
+}
+
+.pf-v5-c-form-control select {
+    height: 56px;
+    padding: 0 16px;
+    padding-right: 48px;
+    border-radius: 8px;
+    border: none !important;
+    background-color: #F5F7FA;
+    font-family: Lato, sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    letter-spacing: 0 !important;
+    color: #121314 !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.pf-v5-c-form-control select:focus {
+    outline: none;
+    border: none !important;
+}
+
+.pf-v5-c-form-control select option {
+    background-color: #FFFFFF;
+    color: #121314;
+    padding: 8px 16px;
+}
+
+.pf-v5-c-form-control:has(select) {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pf-v5-c-form-control:has(select) .pf-v5-c-form-control__utilities {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.pf-v5-c-form-control:has(select) .pf-v5-c-form-control__toggle-icon {
+    color: #121314;
+    display: flex;
+    align-items: center;
+}
+
+.pf-v5-c-form-control:has(select) .pf-v5-c-form-control__toggle-icon svg {
+    width: 1em;
+    height: 1em;
+}
+
+.kc-password-input-wrapper {
+    position: relative;
+}
+
+.kc-password-input-wrapper input {
+    padding-right: 57px;
+}
+
+.kc-password-toggle-btn {
+    position: absolute;
+    right: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none !important;
+    border: none !important;
+    border-width: 0 !important;
+    border-style: none !important;
+    border-color: transparent !important;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    text-decoration: none;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.kc-password-toggle-btn:hover {
+    background: none !important;
+    text-decoration: none;
+    border: none !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+}
+
+.kc-password-toggle-btn:active,
+.kc-password-toggle-btn:focus {
+    background: none !important;
+    text-decoration: none;
+    outline: none !important;
+    border: none !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+}
+
+.kc-password-toggle-btn::before,
+.kc-password-toggle-btn::after {
+    border: none !important;
+    border-width: 0 !important;
+}
+
+.kc-password-toggle-btn:active .kc-password-icon,
+.kc-password-toggle-btn:active img {
+    opacity: 0.5;
+    filter: brightness(0.5);
+}
+
+.kc-password-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.pf-v5-c-form-control input::placeholder {
+    font-family: Lato, sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    letter-spacing: 0 !important;
+    color: #12131466 !important;
+}
+
+input::placeholder,
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder {
+    font-family: Lato, sans-serif !important;
+}
+
+.pf-v5-c-form-control input:focus {
+    outline: none;
+    border: none !important;
+}
+
+.pf-v5-c-form-control:focus-within {
+    border: 1px solid #CBCBCB !important;
+}
+
+.login-pf body,
+body#keycloak-bg {
+    font-family: Lato, sans-serif;
+    background-image: var(--login-background-url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    position: relative;
+}
+
+body#keycloak-bg::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--login-background-logo-url);
+    background-size: contain;
+    background-position: right center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body#keycloak-bg > div {
+    position: relative;
+    z-index: 1;
+}
+
+.pf-v5-c-button.pf-m-primary {
+    background-color: var(--blue-color);
+}
+
+div.kc-logo-text {
+    background-image: var(--keycloak-logo-url);
+    height: var(--keycloak-logo-height);
+    width: var(--keycloak-logo-width);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 59px;
+    margin-top: 41px;
+}
+
+div.kc-logo-text span {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    div.kc-logo-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    #kc-header-wrapper {
+        padding-top: 10px;
+    }
+}
+
+.kc-login-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.kc-login-tooltip .kc-tooltip-text{
+    top:-3px;
+    left:160%;
+    background-color: black;
+    visibility: hidden;
+    color: #fff;
+
+    min-width:130px;
+    text-align: center;
+    border-radius: 2px;
+    box-shadow:0 1px 8px rgba(0,0,0,0.6);
+    padding: 5px;
+
+    position: absolute;
+    opacity:0;
+    transition:opacity 0.5s;
+}
+
+/* Show tooltip */
+.kc-login-tooltip:hover .kc-tooltip-text {
+    visibility: visible;
+    opacity:0.7;
+}
+
+/* Arrow for tooltip */
+.kc-login-tooltip .kc-tooltip-text::after {
+    content: " ";
+    position: absolute;
+    top: 15px;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+#kc-recovery-codes-list {
+    columns: 2;
+}
+
+#certificate_subjectDN {
+    overflow-wrap: break-word
+}
+
+#kc-header-wrapper {
+    font-size: 29px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.2em;
+    white-space: normal;
+    color: var(--pf-v5-global--Color--light-100) !important;
+    text-align: center;
+}
+
+hr {
+    margin-top: var(--pf-v5-global--spacer--sm);
+    margin-bottom: var(--pf-v5-global--spacer--md);
+}
+
+.pf-v5-c-login__main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#kc-register-form input[name="locale"] {
+    display: none !important;
+}
+#kc-register-form label[for="locale"] {
+    display: none !important;
+}
+
+.pf-v5-c-form__group:has(#noMiddleName) {
+    display: flex;
+    flex-direction: column;
+}
+
+#noMiddleName {
+    margin-left: 5px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#input-error-captcha {
+    color: var(--pf-v5-c-helper-text__item-text--Color);
+    font-size: 14px;
+}
+
+.pf-v5-c-login__main-header-utilities {
+    justify-content: flex-end;
+}
+
+.pf-v5-c-login__main-header-utilities .pf-v5-c-form-control,
+.kc-language-wrapper {
+    background: none !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.pf-v5-c-login__main-header-utilities .pf-v5-c-form-control:after {
+    display: none !important;
+}
+
+#login-select-toggle {
+    background: none !important;
+    border: none !important;
+    outline: none !important;
+    color: #093B80 !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0 !important;
+    padding-left: 16px !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.kc-language-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 6px;
+    background-image: url('../img/arrow-down.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 3;
+    display: block;
+}
+
+#login-select-toggle:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+.kc-arrow-down-icon {
+    display: block;
+    padding-top: 4px;
+}
+
+.pf-v5-c-form-control__toggle-icon {
+    padding-inline-end: 0 !important;
+    padding-inline-start: 0 !important;
+    padding-block-start: 0 !important;
+}
+
+.pf-v5-c-form-control__utilities {
+    padding-inline-end: 0 !important;
+    display: none!important;
+}
+
+#kc-form-login {
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Отступ между полем почты и паролем: 24px */
+#kc-form-login .pf-v5-c-form__group:first-of-type {
+    margin-bottom: 24px;
+}
+
+/* Отступ между паролем и "Восстановить": 8px (уже установлен через .pf-v5-c-form__helper-text) */
+#kc-form-login .pf-v5-c-form__group:nth-of-type(2) .pf-v5-c-form__helper-text {
+    margin-block-start: 8px;
+    margin-bottom: 0;
+}
+
+/* Отступ между "Восстановить" и "Запомнить меня": 26px */
+#kc-form-login .pf-v5-c-form__group:nth-of-type(2) {
+    margin-bottom: 26px;
+}
+
+#kc-form-login .pf-v5-c-form__group:nth-of-type(3) {
+    margin-top: 0;
+}
+
+.pf-v5-c-form__helper-text {
+    margin-block-start: 8px;
+}
+
+.pf-v5-c-form__helper-text a {
+    font-size: 16px;
+}
+
+.kcCheckboxLabelClass {
+    font-size: 16px;
+}
+
+.pf-v5-c-check input {
+    height: 24px;
+    width: 24px;
+    border: 2px solid #CBCBCB;
+    border-radius: 4px;
+    --pf-v5-c-check--GridGap: 
+}
+
+.pf-v5-c-check label {
+    gap: 12px!important;
+    margin-bottom: 40px;
+}
+
+.pf-v5-c-button {
+    padding: 0;
+    margin: 0;
+    height: 56px;
+}
+
+.pf-v5-c-login__main-footer-band {
+    padding-top: 24px;
+    padding-bottom: 0;
+}
+
+/* Стили для кнопки "Вернуться назад" в форме OTP */
+.pf-v5-c-login__main-body:has(#kc-otp-form) {
+    position: relative;
+}
+
+.kc-back-link-wrapper {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0;
+}
+
+.pf-v5-c-login__main-body:has(#kc-otp-form) .kc-back-link-wrapper {
+    position: absolute;
+    bottom: 24px;
+    left: 32px;
+    width: auto;
+    margin-top: 0;
+    z-index: 2;
+}
+
+.kc-back-link-form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.kc-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px 10px 14px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+    color: #093B80 !important;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: Lato, sans-serif !important;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: none;
+}
+
+.kc-back-link::before {
+    content: '';
+    width: 10px;
+    height: 6px;
+    background-image: url('../img/arrow-down.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(90deg);
+    display: inline-block;
+}
+
+.kc-back-link:hover,
+.kc-back-link:focus {
+    color: #3BB9B6 !important;
+    opacity: 0.9;
+}
+
+.kc-back-link:active {
+    transform: translateX(-1px);
+}
+
+.kc-back-link:focus-visible {
+    outline: 2px solid #3BB9B6;
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .pf-v5-c-login__main-body:has(#kc-otp-form) .kc-back-link-wrapper {
+        position: static;
+        margin-top: 24px;
+        padding-bottom: 0;
+    }
+}
+
+/* Стилизация радиокнопок для выбора пола как обычных инпутов */
+.pf-v5-c-form__group:has(input[type="radio"]) .pf-v5-c-input-wrapper {
+    background-color: #F5F7FA !important;
+    border: none !important;
+    border-radius: 8px !important;
+    min-height: 56px !important;
+    height: 56px !important;
+    padding: 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+}
+
+/* Контейнер для всех радиокнопок - применяем стили к wrapper */
+.pf-v5-c-form__group:has(input[type="radio"]) > .pf-v5-c-input-wrapper {
+    background-color: #F5F7FA !important;
+    border: none !important;
+    border-radius: 8px !important;
+    min-height: 56px !important;
+    height: 56px !important;
+    padding: 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+}
+
+/* Если радиокнопки находятся прямо в form-control */
+.pf-v5-c-form__group:has(input[type="radio"]) > .pf-v5-c-form-control {
+    background-color: #F5F7FA !important;
+    border: none !important;
+    border-radius: 8px !important;
+    min-height: 56px !important;
+    height: 56px !important;
+    padding: 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+}
+
+/* Если радиокнопки находятся в обычном div */
+.pf-v5-c-form__group:has(input[type="radio"]) > div:not(.pf-v5-c-form-control):not(.pf-v5-c-input-wrapper) {
+    background-color: #F5F7FA !important;
+    border: none !important;
+    border-radius: 8px !important;
+    min-height: 56px !important;
+    height: 56px !important;
+    padding: 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+}
+
+.pf-v5-c-form__group:has(input[type="radio"]) input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #093B80;
+    flex-shrink: 0;
+}
+
+.pf-v5-c-form__group:has(input[type="radio"]) label {
+    font-family: Lato, sans-serif !important;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #121314;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+/* Стилизация отдельных контейнеров радиокнопок */
+.pf-v5-c-form__group:has(input[type="radio"]) > div > div,
+.pf-v5-c-form__group:has(input[type="radio"]) .pf-v5-c-radio,
+.pf-v5-c-form__group:has(input[type="radio"]) [class*="radio"] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+/* =====================================================
+   MAX OTP Form Styles
+   ===================================================== */
+
+#kc-otp-form {
+    gap: 0;
+}
+
+#kc-otp-form .pf-v5-c-form__group:first-of-type {
+    margin-bottom: 10px;
+}
+
+#kc-otp-form input#otp {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 8px;
+    font-weight: 500;
+}
+
+#kc-otp-form input#otp::placeholder {
+    letter-spacing: normal;
+    font-size: 16px;
+}
+
+.max-otp-resend-timer {
+    color: #666;
+    font-size: 14px;
+}
+
+.max-otp-resend-timer #countdown {
+    font-weight: 600;
+    color: var(--blue-color);
+}
+
+.max-otp-resend-btn {
+    background: none !important;
+    border: none !important;
+    color: var(--blue-color) !important;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 !important;
+    height: auto !important;
+}
+
+.max-otp-resend-btn:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.max-otp-info {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+/* =====================================================
+   intl-tel-input Phone Field Styles
+   ===================================================== */
+
+/* Main container */
+.iti {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Make the input wrapper look like other form fields */
+.pf-v5-c-form__group:has(input[name="phoneNumber"]) .pf-v5-c-form-control,
+.pf-v5-c-form__group:has(input[name="phone"]) .pf-v5-c-form-control {
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+/* Style the iti container to match theme */
+.iti--separate-dial-code {
+    background-color: #F5F7FA;
+    border-radius: 8px;
+    width: 100%;
+}
+
+
+.iti__selected-country {
+    background: transparent !important;
+    border: none !important;
+}
+
+.iti__selected-country-primary {
+    padding: 0 6px 0 12px !important;
+}
+
+/* Dial code display */
+.iti__selected-dial-code {
+    font-family: Lato, sans-serif !important;
+    font-size: 16px;
+    color: #121314;
+    padding-left: 8px;
+}
+
+/* Arrow */
+.iti__arrow {
+    border-top-color: #666;
+    margin-left: 6px;
+}
+
+.iti__arrow--up {
+    border-bottom-color: #666;
+}
+
+/* Phone input field (phone: visible #phone-visible; phoneNumber: #phoneNumber) */
+.iti input[type="tel"],
+.iti input#phone-visible,
+.iti input#phoneNumber {
+    background-color: transparent !important;
+    border: none !important;
+    height: 56px !important;
+    padding: 0 16px 0 8px !important;
+    font-family: Lato, sans-serif !important;
+    font-size: 16px !important;
+    color: #121314 !important;
+    width: 100% !important;
+    border-radius: 0 8px 8px 0 !important;
+}
+
+.iti input[type="tel"]:focus,
+.iti input#phone-visible:focus,
+.iti input#phoneNumber:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.iti input[type="tel"]::placeholder {
+    color: #12131466 !important;
+    font-family: Lato, sans-serif !important;
+}
+
+/* Focus state for the whole container */
+.iti--separate-dial-code:focus-within {
+    border: 1px solid #CBCBCB;
+}
+
+/* Dropdown styles */
+.iti__dropdown-content {
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border: 1px solid #E0E0E0;
+    max-height: 250px;
+}
+
+.iti__search-input {
+    font-family: Lato, sans-serif !important;
+    padding: 10px 12px !important;
+    border: none !important;
+    border-bottom: 1px solid #E0E0E0 !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.iti__search-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.iti__country-list {
+    font-family: Lato, sans-serif !important;
+}
+
+.iti__country {
+    padding: 8px 12px !important;
+    font-size: 14px;
+}
+
+.iti__country:hover,
+.iti__country--highlight {
+    background-color: #F5F7FA !important;
+}
+
+.iti__country-name {
+    margin-right: 8px;
+}
+
+.iti__dial-code {
+    color: #666;
+}
+
+/* Flag size adjustments */
+.iti__flag {
+    transform: scale(1.1);
+}
+
+/* Error state */
+.pf-v5-c-form-control.pf-m-error .iti--separate-dial-code,
+.pf-m-error .iti--separate-dial-code {
+    border: 1px solid #A30000 !important;
+}
+
+/* Hide the default span wrapper that Keycloak adds */
+.pf-v5-c-form__group:has(.iti) > .pf-v5-c-form-control > span.pf-v5-c-form-control {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.acceptance-form-container {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.pf-v5-c-check__input {
+    width: 28px;
+    height: 28px;
+}
+
+.pf-v5-c-form__actions {
+    margin: 0;
+}
+
+.iti__country-container {
+    position: relative;
+}
+
+.pf-v5-c-button {
+    cursor: pointer;
+}
+.pf-v5-c-button:hover {
+    opacity: 0.8;
+}
+
+#resend-toggle-btn {
+    background: #093B80 !important;
+    color: #FFFFFF !important;
+    padding: 12px!important;
+    border: none!important;
+    --pf-v5-c-button--after--BorderColor: none !important;
+}
+
+.kc-info-wrapper {
+    justify-content: center;
+    display: flex;
+}
+
+.instruction {
+    text-align: center;
+}

@@ -35,14 +35,13 @@
                 </#if>
             </div>
 
-            <div class="kc-back-link-wrapper" style="margin-top: 1rem; text-align: center;">
-                <form action="${url.loginAction}" method="post" style="display: inline;">
+            <div class="kc-back-link-wrapper">
+                <form action="${url.loginAction}" method="post" class="kc-back-link-form">
                     <button type="submit"
                             name="cancel-aia"
                             value="true"
-                            class="${properties.kcButtonClass!} ${properties.kcButtonSecondaryClass!}"
-                            style="background: none; border: none; padding: 0; color: ${properties.kcLinkColor!}; text-decoration: underline; cursor: pointer; font-size: inherit;">
-                        &laquo; Вернуться назад
+                            class="kc-back-link">
+                        Вернуться назад
                     </button>
                 </form>
             </div>
@@ -157,14 +156,12 @@
                 })();
             </script>
 
-            <div class="kc-back-link-wrapper" style="margin-top: 1rem; text-align: center;">
-                <form action="${url.loginAction}" method="post" style="display: inline;">
+            <div class="kc-back-link-wrapper">
+                <form action="${url.loginAction}" method="post" class="kc-back-link-form">
                     <button type="submit"
                             name="cancel-aia"
                             value="true"
-                            class="${properties.kcButtonClass!} ${properties.kcButtonSecondaryClass!}"
-                            style="background: none; border: none; padding: 0; color: ${properties.kcLinkColor!}; text-decoration: underline; cursor: pointer; font-size: inherit;">
-                        <span class="kc-arrow-left-icon">&lt;</span>
+                            class="kc-back-link">
                         Вернуться назад
                     </button>
                 </form>

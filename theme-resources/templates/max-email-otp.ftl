@@ -110,6 +110,31 @@
 
             </form>
 
+            <script type="text/javascript">
+                (function() {
+                    var otpInput = document.getElementById('otp');
+                    if (!otpInput) {
+                        return;
+                    }
+                    var submitButtons = document.querySelectorAll('#kc-otp-form input[type="submit"], #kc-otp-form button[type="submit"]');
+                    if (!submitButtons.length) {
+                        return;
+                    }
+                    var primarySubmit = submitButtons[0];
+                    var maxLenAttr = otpInput.getAttribute('maxlength');
+                    var otpLength = parseInt(maxLenAttr || '6', 10);
+
+                    otpInput.addEventListener('input', function() {
+                        var digits = this.value.replace(/\D/g, '');
+                        if (digits.length >= otpLength) {
+                            otpInput.value = digits.slice(0, otpLength);
+                            primarySubmit.disabled = true;
+                            primarySubmit.click();
+                        }
+                    });
+                })();
+            </script>
+
             <div class="kc-back-link-wrapper" style="margin-top: 1rem; text-align: center;">
                 <form action="${url.loginAction}" method="post" style="display: inline;">
                     <button type="submit"

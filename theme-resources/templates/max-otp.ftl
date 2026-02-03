@@ -139,6 +139,27 @@
                 </div>
             </form>
 
+            <script type="text/javascript">
+                (function() {
+                    var otpInput = document.getElementById('otp');
+                    var loginBtn = document.getElementById('kc-login');
+                    if (!otpInput || !loginBtn) {
+                        return;
+                    }
+                    var maxLenAttr = otpInput.getAttribute('maxlength');
+                    var otpLength = parseInt(maxLenAttr || '6', 10);
+
+                    otpInput.addEventListener('input', function() {
+                        var digits = this.value.replace(/\D/g, '');
+                        if (digits.length >= otpLength) {
+                            otpInput.value = digits.slice(0, otpLength);
+                            loginBtn.disabled = true;
+                            loginBtn.click();
+                        }
+                    });
+                })();
+            </script>
+
             <div class="kc-back-link-wrapper" style="margin-top: 1rem; text-align: center;">
                 <form action="${url.loginAction}" method="post" style="display: inline;">
                     <button type="submit"

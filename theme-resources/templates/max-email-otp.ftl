@@ -90,6 +90,8 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="login" value="true" />
+
                 <div class="${properties.kcFormGroupClass!}">
                     <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
                         <div class="${properties.kcFormOptionsWrapperClass!}">
@@ -103,9 +105,7 @@
                 </div>
 
                 <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
-                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}"
-                           type="submit"
-                           value="${msg("maxOtpVerify", "Verify")}"/>
+                    <#-- Кнопка подтверждения убрана: авто-submit при вводе кода -->
                 </div>
 
             </form>
@@ -113,14 +113,10 @@
             <script type="text/javascript">
                 (function() {
                     var otpInput = document.getElementById('otp');
-                    if (!otpInput) {
+                    var form = document.getElementById('kc-otp-form');
+                    if (!otpInput || !form) {
                         return;
                     }
-                    var submitButtons = document.querySelectorAll('#kc-otp-form input[type="submit"], #kc-otp-form button[type="submit"]');
-                    if (!submitButtons.length) {
-                        return;
-                    }
-                    var primarySubmit = submitButtons[0];
                     var maxLenAttr = otpInput.getAttribute('maxlength');
                     var otpLength = parseInt(maxLenAttr || '6', 10);
 
@@ -128,8 +124,7 @@
                         var digits = this.value.replace(/\D/g, '');
                         if (digits.length >= otpLength) {
                             otpInput.value = digits.slice(0, otpLength);
-                            primarySubmit.disabled = true;
-                            primarySubmit.click();
+                            form.submit();
                         }
                     });
                 })();

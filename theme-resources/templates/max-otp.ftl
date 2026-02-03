@@ -119,9 +119,7 @@
                     </div>
                 </#if>
 
-                <@buttons.actionGroup>
-                    <@buttons.button id="kc-login" name="login" label="maxOtpVerify" class=["kcButtonPrimaryClass", "kcButtonBlockClass"] />
-                </@buttons.actionGroup>
+                <input type="hidden" name="login" value="true" />
 
                 <div class="${properties.kcFormGroupClass!}" style="text-align: center; margin-top: 12px;">
                     <#if showTimer>
@@ -142,8 +140,8 @@
             <script type="text/javascript">
                 (function() {
                     var otpInput = document.getElementById('otp');
-                    var loginBtn = document.getElementById('kc-login');
-                    if (!otpInput || !loginBtn) {
+                    var form = document.getElementById('kc-otp-form');
+                    if (!otpInput || !form) {
                         return;
                     }
                     var maxLenAttr = otpInput.getAttribute('maxlength');
@@ -153,8 +151,7 @@
                         var digits = this.value.replace(/\D/g, '');
                         if (digits.length >= otpLength) {
                             otpInput.value = digits.slice(0, otpLength);
-                            loginBtn.disabled = true;
-                            loginBtn.click();
+                            form.submit();
                         }
                     });
                 })();

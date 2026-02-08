@@ -3,7 +3,7 @@
     <#if section = "header">
         ${msg("maxOtpTitle", "Verification Code")}
     <#elseif section = "form">
-        <#assign isSendFailed = (sendFailed?? && sendFailed)>
+        <#assign isSendFailed = (sendFailed?? && sendFailed?boolean)>
         <#assign showTimer = (resendWait?? && (resendWait > 0))>
 
         <#if isSendFailed>
@@ -13,7 +13,7 @@
                     ${msg("maxOtpResendWait", "Resend available in")} <span id="countdown">${resendWait!0}</span> ${msg("maxOtpSeconds", "sec")}
                 </span>
 
-                <#if emailEnabled?? && emailEnabled>
+                <#if emailEnabled?? && emailEnabled?boolean>
                     <div id="resend-button-container" style="display: <#if showTimer>none<#else>block</#if>;">
                         <button type="button"
                                 id="resend-toggle-btn"
@@ -145,7 +145,7 @@
                     ${msg("maxOtpResendWait", "Resend available in")} <span id="countdown">${resendWait!0}</span> ${msg("maxOtpSeconds", "sec")}
                 </span>
 
-                <#if emailEnabled?? && emailEnabled>
+                <#if emailEnabled?? && emailEnabled?boolean>
                     <div id="resend-button-container" style="display: <#if showTimer>none<#else>block</#if>;">
                         <button type="button"
                                 id="resend-toggle-btn"
@@ -207,7 +207,7 @@
         </script>
         </#if>
     <#elseif section = "info">
-        <#if !(sendFailed?? && sendFailed)>
+        <#if !(sendFailed?? && sendFailed?boolean)>
         <p class="instruction">
             <#if currentMethod?? && currentMethod == "email">
                 ${msg("maxOtpInfoEmail", "A verification code has been sent to your email.")?no_esc}

@@ -130,22 +130,6 @@
                 </a>
             </div>
 
-            <script type="text/javascript">
-                (function() {
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var backLinks = document.querySelectorAll('.kc-back-link');
-                        backLinks.forEach(function(link) {
-                            link.addEventListener('click', function() {
-                                console.log('MAX-EMAIL-OTP back clicked', {
-                                    href: link.getAttribute('href'),
-                                    location: window.location.href
-                                });
-                            });
-                        });
-                    });
-                })();
-            </script>
-
             <div class="${properties.kcFormGroupClass!}" style="margin-top: 1rem; text-align: center;">
                 <span id="resend-timer" class="pf-c-helper-text" style="display: <#if showTimer>inline<#else>none</#if>;">
                     ${msg("maxOtpResendWait", "Resend available in")} <span id="countdown">${resendWait!0}</span> ${msg("maxOtpSeconds", "sec")}

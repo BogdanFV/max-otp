@@ -36,14 +36,9 @@
             </div>
 
             <div class="kc-back-link-wrapper">
-                <form action="${url.loginAction}" method="post" class="kc-back-link-form">
-                    <button type="submit"
-                            name="cancel-aia"
-                            value="true"
-                            class="kc-back-link">
-                        Вернуться назад
-                    </button>
-                </form>
+                <a href="${url.loginUrl}" class="kc-back-link">
+                    Вернуться назад
+                </a>
             </div>
 
             <#if showTimer>
@@ -157,14 +152,9 @@
             </script>
 
             <div class="kc-back-link-wrapper">
-                <form action="${url.loginAction}" method="post" class="kc-back-link-form">
-                    <button type="submit"
-                            name="cancel-aia"
-                            value="true"
-                            class="kc-back-link">
-                        Вернуться назад
-                    </button>
-                </form>
+                <a href="${url.loginUrl}" class="kc-back-link">
+                    Вернуться назад
+                </a>
             </div>
 
             <#if showTimer>

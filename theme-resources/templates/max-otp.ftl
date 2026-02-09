@@ -36,7 +36,7 @@
             </div>
 
             <div class="kc-back-link-wrapper">
-                <a href="${url.loginUrl}" class="kc-back-link">
+                <a href="${url.loginRestartFlowUrl}" class="kc-back-link">
                     Вернуться назад
                 </a>
             </div>
@@ -152,10 +152,26 @@
             </script>
 
             <div class="kc-back-link-wrapper">
-                <a href="${url.loginUrl}" class="kc-back-link">
+                <a href="${url.loginRestartFlowUrl}" class="kc-back-link">
                     Вернуться назад
                 </a>
             </div>
+
+            <script type="text/javascript">
+                (function() {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var backLinks = document.querySelectorAll('.kc-back-link');
+                        backLinks.forEach(function(link) {
+                            link.addEventListener('click', function() {
+                                console.log('MAX-OTP back clicked', {
+                                    href: link.getAttribute('href'),
+                                    location: window.location.href
+                                });
+                            });
+                        });
+                    });
+                })();
+            </script>
 
             <#if showTimer>
             <script type="text/javascript">
